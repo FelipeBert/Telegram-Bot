@@ -1,3 +1,6 @@
+# Instalação: pip install pytelegrambotapi
+# Link Telegram: http://t.me/bertulininho_bot
+
 import telebot
 
 CHAVE_API = "6227139496:AAF4GJm87Sxep8-DO85OTOp7pwEgg9XinNU"
