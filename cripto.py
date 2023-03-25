@@ -30,4 +30,3 @@ def decrypt(pk, mensagem):
 
 p = valor de p
 q = valor de q
-public_key, private_key = generate_keypair(p, q)
