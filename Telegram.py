@@ -53,11 +53,28 @@ def after_professor(mensagem):
         """
     bot.send_message(mensagem.chat.id, texto)
 
-@bot.message_handler(commands=["opcao2"])
-def opcao2(mensagem):
+@bot.message_handler(commands=["Bolsas"])
+def Bolsas(mensagem):
+    bot.send_message(mensagem.chat.id, 'Digite o Tipo de Bolsa: ')
+
+    @bot.message_handler(func=lambda mensagem: True, content_types=['text'])
+    def get_bolsa(mensagem):
+        for index, texto in df.iterrows():
+            if mensagem.text.strip() in texto['texto']:
+                 bot.send_message(mensagem.chat.id, texto['titulo'])
+                 bot.send_message(mensagem.chat.id, texto['data'])
+                 bot.send_message(mensagem.chat.id, texto['texto'])
+                 bot.send_message(mensagem.chat.id, texto['link'])
+                 bot.send_message(mensagem.chat.id, 'Digite algo para Prosseguir')
+                 bot.register_next_step_handler(mensagem, after_bolsa)
+
+    bot.register_next_step_handler(mensagem, get_bolsa)
+
+def after_bolsa(mensagem):
     texto = """
-    Teste
-    """
+        /Bolsas Novamente
+        /Menu
+        """
     bot.send_message(mensagem.chat.id, texto)
 
 
